@@ -19,14 +19,18 @@ class LoginCtr extends Controller
         {
             return view('welcome');
         }
+            
         return redirect('/home');
+        
     }
 
     protected  function login(Request $request)
     {
+       
     $data = $this->authHomisAccount($request);
-
-        if (count ($data) < 1)  {
+        
+    
+        if (count ($data) == 0)  {
             return redirect()
               ->back()
               ->withErrors(['username' => 'Invalid username or password'])
@@ -34,6 +38,8 @@ class LoginCtr extends Controller
           }
         
         $mydata = DB::select("SELECT TOP 1 * FROM jhay.linen_user WHERE employeeid = '".$data[0]->employeeid."'");
+        
+        //dd($mydata);
         if (count ($mydata) == 1)
         {
             Auth::loginUsingId($data[0]->employeeid);

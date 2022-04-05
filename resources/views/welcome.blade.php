@@ -18,9 +18,41 @@
 
   <!-- Custom styles for this template-->
   {{-- <link href="{{ asset('css/sb-admin-2.css') }}" rel="stylesheet"> --}}
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<script>
+function showPassword() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+
+function showConfirmPassword() {
+  var x = document.getElementById("confirm_password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+var check = function() {
+  if (document.getElementById('password').value ==
+    document.getElementById('confirm_password').value) {
+    document.getElementById('message').style.color = 'green';
+    document.getElementById('message').innerHTML = 'Password match!';
+  } else {
+    document.getElementById('message').style.color = 'red';
+    document.getElementById('message').innerHTML = 'Password does not match';
+  }
+}
+</script>
+
 
 </head>
 
@@ -33,35 +65,63 @@
                 <div class="account-wall">
                     <img class="profile-img" src="../bghmc.png" alt="" height="50" width="50">
                     <center><h5 class="text-muted">Use your HOMIS Account to Login</h5></center>
+                    
+
                     <form class="form-signin" method="POST" action="/login">
                         @csrf
-                    <input type="text" class="form-control{{ $errors->has('user_name') ? ' is-invalid' : '' }}" name="user_name" value="{{ old('user_name') }}" placeholder="Username" required autofocus>
+                    <input type="text" class="form-control{{ $errors->has('user_name') ? ' is-invalid' : '' }}" name="user_name" value="{{ old('user_name') }}" placeholder="Username" required autofocus >
                     @if ($errors->has('user_name'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('user_name') }}</strong>
                                     </span>
-                                @endif
+                    @endif
                     <input type="password" class="form-control{{ $errors->has('user_pass') ? ' is-invalid' : '' }}" name="user_pass" placeholder="Password" required>
                     @if ($errors->has('user_pass'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('user_pass') }}</strong>
                                     </span>
-                                @endif
-                    <button class="btn btn-lg btn-primary btn-block" type="submit">
-                        Login</button>
+                    @endif
+                    <button class="btn btn-lg btn-primary btn-block" type="submit" >Login</button>
+                    <br>
+                    <a href="{{ URL::route('register') }}">
+                        <button class="btn btn-lg btn-info btn-block" type="button" >
+                            Register
+                        </button>
+                    </a>
+                     
                     {{-- <label class="checkbox pull-left">
                         <input type="checkbox" value="remember-me">
                         Remember me
                     </label>
                     <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span> --}}
+                    
                     </form>
-                </div>
+                    
+                    </button> 
+                    
+                </div>                
+                    
                 <p class="text-center new-account text-muted">Linen Office | Local 228</p>
                 {{-- <a href="#" class="text-center new-account">Create an account </a> --}}
             </div>
             
         </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 {{-- 
   <div class="container">
 

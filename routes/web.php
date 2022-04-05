@@ -178,3 +178,11 @@ Route::get('/maintenance/staff', 'MaintenanceCtr@staffmaintenance')->name('Staff
     Route::get('/stockroom/list', 'StockroomCtr@stockroomlist')->name('Stock Room List');
     Route::get('/storage/list', 'StorageCtr@storagelist')->name('Storage List');
     Route::get('/storage/{id}', 'StorageCtr@perstorage');
+
+    // Devlopment new routes for role user 4
+    //LINEN REGISTER USER
+    Route::any('/register', 'Auth\RegisterLinenController@register')->name('register');
+    Route::any('/register/validateUser', 'Auth\RegisterLinenController@registerValidate');
+    //Create Request
+    Route::any('/createRequest', 'CreateRequestController@index');
+    

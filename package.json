@@ -23,6 +23,7 @@
         "vue": "^2.5.17"
     },
     "dependencies": {
+        "bootstrap-table": "^1.19.1",
         "sweetalert2": "^10.3.3"
     }
 }
